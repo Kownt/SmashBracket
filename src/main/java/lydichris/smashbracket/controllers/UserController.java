@@ -5,8 +5,8 @@
  */
 package lydichris.smashbracket.controllers;
 
-import lydichris.smashbracket.models.User;
 import lydichris.smashbracket.services.UserService;
+import lydichris.smashbracket.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class UserController {
-    //Should be autowired
-    private UserService userService = new UserService();
+    
+    @Autowired UserService userService;
+    
+    public void setUserService(UserService userService){
+        this.userService = userService;
+    }
     
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     User createUser(@RequestParam String userName) {
@@ -28,13 +32,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    User getUser(@PathVariable long userId) {
+    User getUser(@PathVariable String userId) {
 	return userService.getUser(userId);
-    }
-    
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    User getUser() {
-	return userService.getUser(1);
-    }
-    
+    }    
 }

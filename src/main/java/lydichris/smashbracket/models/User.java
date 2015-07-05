@@ -5,20 +5,22 @@
  */
 package lydichris.smashbracket.models;
 
+import java.util.UUID;
+
 /**
  *
  * @author cgmcandrews
  */
 public class User {
-    private final long id;
+    private final String id;
     private final String userName;
     
-    public User(long id, String userName){
+    public User(String id, String userName){
         this.id = id;
         this.userName = userName;
     }
     
-    public long getId(){
+    public String getId(){
         return id;
     }
     

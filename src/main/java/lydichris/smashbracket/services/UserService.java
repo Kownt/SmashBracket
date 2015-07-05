@@ -5,21 +5,30 @@
  */
 package lydichris.smashbracket.services;
 
+import java.util.UUID;
 import lydichris.smashbracket.models.User;
+import lydichris.smashbracket.persistence.UserPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author cgmcandrews
  */
+@Service("userService")
 public class UserService {
+
+    @Autowired UserPersistence userPersistence;
+    
+    public void setUserPersistence(UserPersistence userPersistence){
+        this.userPersistence = userPersistence;
+    }
     
     public User maybeCreateUser(String userName){
-        //blah bah blah this should go to persistence layer and do some stuff.
-        return new User(1, userName);
+        return userPersistence.createUser(userName);
     }
 
-    public User getUser(long userId) {
-        //blah bah blah this should go to persistence layer and do some stuff.
-        return new User(userId, "userName");
+    public User getUser(String userId) {
+        return userPersistence.getUser(userId);
     }
 }
