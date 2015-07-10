@@ -1,0 +1,14 @@
+<h1>Wow so dynamic</h1>
+<a href="#/SmashBracket">Home</a><br/>
+
+  <label>UserName:
+    <input type="text" name="input" ng-model="userName" required> <br/>
+    <button ng-click="registerUser($event)">Register User</button>
+  </label>
+
+<ul class="usersRegistered ">
+    <li ng-repeat="userRegistered  in usersRegistered">
+        <span>{{userRegistered.userName}}</span>
+        <p>{{userRegistered.id}}</p>
+    </li>
+</ul>
