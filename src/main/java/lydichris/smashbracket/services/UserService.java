@@ -5,7 +5,6 @@
  */
 package lydichris.smashbracket.services;
 
-import java.util.UUID;
 import lydichris.smashbracket.models.User;
 import lydichris.smashbracket.persistence.UserPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
