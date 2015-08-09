@@ -5,26 +5,51 @@
  */
 package lydichris.smashbracket.models;
 
-import java.util.UUID;
 
 /**
  *
  * @author cgmcandrews
  */
 public class User {
-    private final String id;
-    private final String userName;
-    
-    public User(String id, String userName){
-        this.id = id;
-        this.userName = userName;
+
+    private String id;
+
+    private String username;
+
+    private String email;
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
     }
-    
-    public String getId(){
+
+    public User(String id, String username, String email) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+    }
+
+    public String getId() {
         return id;
     }
-    
-    public String getUserName(){
-        return userName;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUserName(String username) {
+        this.username = username;
+    }
+
+    public String getUserName() {
+        return username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

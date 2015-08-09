@@ -38,8 +38,10 @@ smashBracketControllers.controller('UserRegistrationCtrl', ['$scope', '$http', '
             
             var req = {
                 method: 'POST',
-                url: 'http://127.0.0.1:8080/users',
-                data: {userName: $scope.userName,
+                url: 'http://127.0.0.1:8080/users?username=' + $scope.userName +
+                                                '&password=' + $scope.password +
+                                                '&email=' + $scope.email,
+                data: {username: $scope.userName,
                        password: $scope.password,
                        email: $scope.email}
             };
@@ -47,7 +49,7 @@ smashBracketControllers.controller('UserRegistrationCtrl', ['$scope', '$http', '
             
             //Pop ups to explain rules on each box are super cool.
             $scope.dataLoading = true;
-            $http.post(req).
+            $http(req).
                     success(function () {
                         AuthenticationService.SetCredentials($scope.userName, $scope.password);
                         $location.path('/');

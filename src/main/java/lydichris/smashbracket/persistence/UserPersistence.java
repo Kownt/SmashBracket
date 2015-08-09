@@ -5,7 +5,7 @@
  */
 package lydichris.smashbracket.persistence;
 
-
+import java.sql.ResultSet;
 import javax.sql.DataSource;
 import lydichris.smashbracket.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 /**
  *
@@ -31,20 +32,38 @@ public class UserPersistence {
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
-    public User createUser(String userName) {
-        UUID uuid = UUID.randomUUID();
-        String SQL = "insert into users (UserName, UserId) values (?, ?)";
-
-        jdbcTemplateObject.update(SQL, userName, uuid.toString());
-        //Replace with a logger
-        System.out.println("Created Record Name = " + userName);
-        return new User(uuid.toString(), userName);
-    }
-
     public User getUser(String userId) {
         String SQL = "select * from users where UserId = ?";
         User user = jdbcTemplateObject.queryForObject(SQL,
                 new Object[]{userId}, new UserMapper());
         return user;
+    }
+
+    public User createUser(String username, byte[] passwordHash, String email) {
+        UUID uuid = UUID.randomUUID();
+        String SQL = "insert into users (username, Userid, passwordhash, email) values (?, ?, ?, ?)";
+
+        jdbcTemplateObject.update(SQL, username, uuid.toString(), passwordHash, email);
+        return new User(uuid.toString(), username, email);
+    }
+
+    public boolean checkUsernameExists(String username) {
+        String SQL = "select count(username) from users where username = ?";
+        SqlRowSet result = jdbcTemplateObject.queryForRowSet(SQL, username);
+        if (result.next()) {
+            return result.getInt("count(username)") > 0;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkEmailExists(String email) {
+        String SQL = "select count(username) from users where email = ?";
+        SqlRowSet result = jdbcTemplateObject.queryForRowSet(SQL, email);
+        if (result.next()) {
+            return result.getInt("count(username)") > 0;
+        } else {
+            return false;
+        }
     }
 }
