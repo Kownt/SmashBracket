@@ -25,17 +25,18 @@
                 <a href="/"><img src="/img/smashBracket.png" alt="SmashBracket Icon" style="width:96px;"></a>
                 <h2><a href="/">Smash Bracket</a></h2>
             </div>
-            <nav>
+        </header>
+        <nav>
                 <a href="/login">Log in</a>
                 <a href="/register">Sign up</a>
                 <a href="/browse">Browse Tournaments</a>
                 <a href="/create">Create Tournament</a>
-            </nav>
-        </header>
-        <br/>
-        <div class="view-container">
-            <div ng-view class="view-frame"></div>
-        </div>
+        </nav>
 
+        <main>
+            <div class="view-container">
+                <div ng-view class="view-frame"></div>
+            </div>
+        </main>
     </body>
 </html>
