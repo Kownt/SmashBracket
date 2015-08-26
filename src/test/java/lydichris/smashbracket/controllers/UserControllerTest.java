@@ -23,6 +23,11 @@ public class UserControllerTest {
     
     UserController controller = new UserController();
     
+    String username = "username";
+    String password = "password";
+    String email = "email@test.com";
+    User mockUser = new User(username, email);
+        
     @Before
     public void setUp() {
         controller.userService = mock(UserService.class);
@@ -30,16 +35,17 @@ public class UserControllerTest {
     
     @Test
     public void testCreateUserDelegatesToServiceLayer() throws UserCreationException {
-        String username = "username";
-        String password = "password";
-        String email = "email@test.com";
-        User mockUser = new User(username, email);
-        
         when(controller.userService.maybeCreateUser(username, password, email)).thenReturn(mockUser);
-        User user = controller.createUser(username, password, email);
+        controller.createUser(username, password, email);
         verify(controller.userService).maybeCreateUser(username, password, email); 
-        assertEquals(username, user.getUserName());
-        assertEquals(email, user.getEmail());
+    }
+    
+    @Test
+    public void testGetUserDelegatesToServiceLayer() throws Exception {
+        String uuid = "testing";
+        when(controller.userService.getUser(uuid)).thenReturn(mockUser);
+        controller.getUser(uuid);
+        verify(controller.userService).getUser(uuid); 
     }
     
 }
