@@ -5,7 +5,6 @@
  */
 package lydichris.smashbracket.controllers;
 
-import lydichris.smashbracket.exceptions.UserCreationException;
 import lydichris.smashbracket.services.UserService;
 import lydichris.smashbracket.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     User createUser(@RequestParam String username,
             @RequestParam String password,
-            @RequestParam String email) throws UserCreationException {
+            @RequestParam String email) {
 	return userService.maybeCreateUser(username, password, email);
     }
     

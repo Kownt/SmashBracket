@@ -11,7 +11,7 @@ import lydichris.smashbracket.enums.UserCreationExceptionEnum;
  *
  * @author cgmcandrews
  */
-public class UserCreationException  extends Exception {
+public class UserCreationException extends RuntimeException {
 
     private static final long serialVersionUID = 4664456874499611218L;
     private UserCreationExceptionEnum errorEnum = UserCreationExceptionEnum.UNKNOWN_ERROR;

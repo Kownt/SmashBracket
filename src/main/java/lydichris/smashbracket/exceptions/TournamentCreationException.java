@@ -9,6 +9,6 @@ package lydichris.smashbracket.exceptions;
  *
  * @author cgmcandrews
  */
-public class TournamentCreationException extends Throwable {
+public class TournamentCreationException extends RuntimeException {
     
 }

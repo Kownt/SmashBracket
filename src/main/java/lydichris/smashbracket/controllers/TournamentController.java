@@ -12,7 +12,6 @@ import lydichris.smashbracket.exceptions.TournamentNotFoundException;
 import lydichris.smashbracket.models.Tournament;
 import lydichris.smashbracket.services.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,17 +50,7 @@ public class TournamentController {
         //Consider adding location
 	return tournamentService.createTournament(name, description, maxEntrants, game, tournamentType, startTime, hostId);
     }
-    
-    @RequestMapping(value = "/tournaments", method = RequestMethod.POST)
-    Tournament createTournament(@RequestParam Tournament tournament,
-            @RequestParam boolean seed)
-            throws TournamentCreationException {
         
-        //Should take in userName for host somehow
-        //Consider adding location
-	return tournamentService.createTournament(tournament, seed);
-    }
-    
     @RequestMapping(value = "/tournaments", method = RequestMethod.PUT)
     Tournament editTournament(@RequestParam Tournament tournament,
             @RequestParam boolean seed)

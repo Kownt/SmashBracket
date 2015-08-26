@@ -52,7 +52,7 @@ public class TournamentPersistence {
 
     public Tournament editTournament(Tournament tournament) {
         
-        //TODO actually writh this correctly its all wrong
+        //TODO actually write this correctly its all wrong
         String SQL = "update tournament set (uuid, name, start_date, size_limit, location, game, host, format, description, is_bracket_visible) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
        
         jdbcTemplateObject.update(SQL,

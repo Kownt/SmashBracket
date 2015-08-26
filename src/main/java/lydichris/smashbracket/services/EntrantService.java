@@ -5,7 +5,7 @@
  */
 package lydichris.smashbracket.services;
 
-import lydichris.smashbracket.models.Tournament;
+import lydichris.smashbracket.models.Entrant;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 @Service("entrantService")
 public class EntrantService {
 
-    public Tournament getEntrant(String uuid) {
+    public Entrant getEntrant(String uuid) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Tournament maybeCreateEntrant(String tag, String username, String password, String tournamentUuid) {
+    public Entrant maybeCreateEntrant(String tag, String username, String password, String tournamentUuid) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

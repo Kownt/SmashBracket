@@ -38,7 +38,7 @@ public class UserService {
         return userPersistence.getUser(userId);
     }
 
-    public User maybeCreateUser(String username, String password, String email) throws UserCreationException {
+    public User maybeCreateUser(String username, String password, String email) {
         validatePassword(password);
         byte[] passwordHash;
         try {
@@ -52,7 +52,7 @@ public class UserService {
         return userPersistence.createUser(username, passwordHash, email);
     }
 
-    private void validatePassword(String password) throws UserCreationException {
+    private void validatePassword(String password) {
         boolean hasAppropriateLength = password.length() >= minPasswordLength;
         boolean hasNumber = password.matches(".*\\d.*");  // "a digit with anything before or after"
         boolean hasSpecial = password.matches(".*[!@#$%^&*].*");
@@ -70,7 +70,7 @@ public class UserService {
         }
     }
 
-    private void validateEmail(String email) throws UserCreationException {
+    private void validateEmail(String email) {
         EmailValidator emailValidator = EmailValidator.getInstance();
         if (!emailValidator.isValid(email)) {
             throw new UserCreationException(UserCreationExceptionEnum.BAD_EMAIL);
@@ -81,7 +81,7 @@ public class UserService {
         }
     }
 
-    private void validateUsername(String username) throws UserCreationException {
+    private void validateUsername(String username) {
         boolean hasAppropriateLength = username.length() <= maxUserNameLength;
         boolean hasOnlyNumbersAndLetters = username.matches("^[a-zA-Z0-9]*$");
 
