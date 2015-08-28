@@ -32,7 +32,7 @@ public class TournamentPersistence {
     
     public Tournament createTournament(Tournament tournament) {
         UUID uuid = UUID.randomUUID();
-        String SQL = "insert into tournament (uuid, name, start_date, size_limit, location, game, host, format, description, is_bracket_visible) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "insert into tournaments (uuid, name, start_time, size_limit, location, game, host, format, description, is_bracket_visible) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
        
         jdbcTemplateObject.update(SQL,
                 uuid.toString(),
@@ -52,8 +52,7 @@ public class TournamentPersistence {
 
     public Tournament editTournament(Tournament tournament) {
         
-        //TODO actually write this correctly its all wrong
-        String SQL = "update tournament set (uuid, name, start_date, size_limit, location, game, host, format, description, is_bracket_visible) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "update tournaments set uuid = ?, name = ?, start_time = ?, size_limit = ?, location = ?, game = ?, host = ?, format = ?, description = ?, is_bracket_visible= ?";
        
         jdbcTemplateObject.update(SQL,
                 tournament.getId(),

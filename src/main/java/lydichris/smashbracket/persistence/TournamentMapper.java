@@ -27,7 +27,7 @@ public class TournamentMapper implements RowMapper<Tournament>{
                 rs.getString("location"),
                 rs.getString("game"),
                 rs.getString("host"),
-                TournamentType.valueOf(rs.getString("format")),
+                TournamentType.fromString(rs.getString("format")),
                 rs.getString("description"),
                 rs.getInt("is_bracket_visible") == 1);
         

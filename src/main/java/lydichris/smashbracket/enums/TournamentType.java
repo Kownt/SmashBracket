@@ -17,7 +17,7 @@ public enum TournamentType {
     SWISS("Swiss"),
     ROUND_ROBIN("Round Robin"),
     MULTI_STAGE("Multi Stage");
-    
+
     private final String value;
 
     private TournamentType(String value) {
@@ -26,5 +26,16 @@ public enum TournamentType {
 
     public String getValue() {
         return value;
+    }
+
+    public static TournamentType fromString(String text) {
+        if (text != null) {
+            for (TournamentType b : TournamentType.values()) {
+                if (text.equalsIgnoreCase(b.getValue())) {
+                    return b;
+                }
+            }
+        }
+        throw new IllegalArgumentException("No constant with text " + text + " found");
     }
 }

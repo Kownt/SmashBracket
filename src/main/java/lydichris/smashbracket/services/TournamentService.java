@@ -36,13 +36,21 @@ public class TournamentService {
         return tournamentPersistence.createTournament(tournament);
     }
 
-    public Tournament createTournament(Tournament tournament, boolean seed) {
+    public Tournament editTournament(String tournamentUuid, String name, String description, int maxEntrants, String game, TournamentType tournamentType, Date startTime, String hostId, boolean seed) {
         
-
+        Tournament tournament = new Tournament();
+        tournament.setName(name);
+        tournament.setDescription(description);
+        tournament.setMaxEntrants(maxEntrants);
+        tournament.setGame(game);
+        tournament.setTournamentType(tournamentType);
+        tournament.setStartTime(startTime);
+        tournament.setHostId(hostId);
+        tournament.setId(tournamentUuid);
         
-        return tournamentPersistence.createTournament(tournament);
+        return tournamentPersistence.editTournament(tournament);
     }
-
+    
     public Tournament editTournament(Tournament tournament, boolean seed) {
         return tournamentPersistence.editTournament(tournament);
     }
