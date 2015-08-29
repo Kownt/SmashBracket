@@ -35,23 +35,25 @@ public class EntrantController {
         return entrantService.getEntrant(uuid);
     }
 
+    @RequestMapping(value = "/entrants", method = RequestMethod.DELETE)
+    Entrant deleteEntrant(@RequestParam String uuid) {
+        return entrantService.deleteEntrant(uuid);
+    }
+    
     @RequestMapping(value = "/entrants", method = RequestMethod.POST)
     Entrant createEntrant(@RequestParam String tag,
-            @RequestParam String username,
-            @RequestParam String password,
+            @RequestParam (value = "username", required = false) String username,
+            @RequestParam (value = "password", required = true)  String password,
             @RequestParam String tournamentUuid)
             throws TournamentCreationException {
-
-        return entrantService.maybeCreateEntrant(tag, username, password, tournamentUuid);
+        return entrantService.createEntrant(tag, username, password, tournamentUuid);
     }
 
     @RequestMapping(value = "/entrants", method = RequestMethod.PUT)
     Entrant editEntrant(@RequestParam String tag,
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam String tournamentUuid) {
+            @RequestParam String entrantUuid) {
 
-        return entrantService.maybeCreateEntrant(tag, username, password, tournamentUuid);
+        return entrantService.editEntrant(tag, entrantUuid);
     }
 
 }

@@ -58,5 +58,10 @@ public class TournamentService {
     public Tournament getTournament(String uuid) {
        return tournamentPersistence.getTournament(uuid);
     }
+
+    public void deleteTournament(String uuid) {
+        //TODO more logic to only delete a tournament if it has not started.
+        tournamentPersistence.deleteTournament(uuid);
+    }
     
 }

@@ -75,5 +75,10 @@ public class TournamentPersistence {
                 new Object[]{uuid}, new TournamentMapper());
         return tournament;
     }
+
+    public void deleteTournament(String uuid) {
+        String SQL = "delete from tournaments where uuid = ?";
+        jdbcTemplateObject.update(SQL, uuid);
+    }
     
 }

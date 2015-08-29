@@ -35,6 +35,11 @@ public class TournamentController {
 	return tournamentService.getTournament(uuid);
     }
     
+    @RequestMapping(value = "/tournaments", method = RequestMethod.DELETE)
+    void deleteTournament(@RequestParam String uuid) {
+	tournamentService.deleteTournament(uuid);
+    }
+    
     @RequestMapping(value = "/tournaments", method = RequestMethod.POST)
     Tournament createTournament(@RequestParam String name,
             @RequestParam String description,

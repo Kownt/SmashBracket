@@ -13,7 +13,8 @@ public class Entrant {
     
     private String id;
     private String tag;
-    private User user;
+    private String userId;
+    private String tournamentId;
     private int seed = -1;
     
     public String getId() {
@@ -28,6 +29,14 @@ public class Entrant {
         this.seed = seed;
     }
 
+    public String getTournamentId() {
+        return tournamentId;
+    }
+
+    public void setTournamentId(String tournamentId) {
+        this.tournamentId = tournamentId;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -40,11 +49,11 @@ public class Entrant {
         this.tag = tag;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(String userId) {
+        this.userId = userId;
     }
 }

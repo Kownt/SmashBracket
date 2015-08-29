@@ -66,4 +66,26 @@ public class UserPersistence {
             return false;
         }
     }
+
+    public boolean checkUsernamePasswordHashExists(String username, byte[] password) {
+        String SQL = "select count(username) from users where username = ? AND passwordHash = ?";
+        SqlRowSet result = jdbcTemplateObject.queryForRowSet(SQL, username, password);
+        if (result.next()) {
+            return result.getInt("count(username)") > 0;
+        } else {
+            return false;
+        }
+    }
+
+    public User getUserByUserName(String username) {
+       String SQL = "select * from users where username = ?";
+        SqlRowSet result = jdbcTemplateObject.queryForRowSet(SQL, username);
+        if (result.next()) {
+            User user = jdbcTemplateObject.queryForObject(SQL,
+                new Object[]{username}, new UserMapper());
+            return user;
+        } else {
+            return null;
+        }
+    }
 }
