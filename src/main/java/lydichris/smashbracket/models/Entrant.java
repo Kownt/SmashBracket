@@ -17,6 +17,18 @@ public class Entrant {
     private String tournamentId;
     private int seed = -1;
     
+    public Entrant(){
+        
+    }
+    
+    public Entrant(String id, String tag, String userId, String tournamentId, int seed){
+        this.id = id;
+        this.tag = tag;
+        this.userId = userId;
+        this.tournamentId = tournamentId;
+        this.seed = seed;
+    }
+    
     public String getId() {
         return id;
     }

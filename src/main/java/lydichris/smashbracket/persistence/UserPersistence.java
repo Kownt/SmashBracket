@@ -5,7 +5,6 @@
  */
 package lydichris.smashbracket.persistence;
 
-import java.sql.ResultSet;
 import javax.sql.DataSource;
 import lydichris.smashbracket.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +21,12 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 @Service("userPersistence")
 public class UserPersistence {
 
-    private DataSource dataSource;
+
     private JdbcTemplate jdbcTemplateObject;
 
     @Autowired
     @Qualifier("dataSource")
     public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 

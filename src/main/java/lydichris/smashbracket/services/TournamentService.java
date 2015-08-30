@@ -63,5 +63,9 @@ public class TournamentService {
         //TODO more logic to only delete a tournament if it has not started.
         tournamentPersistence.deleteTournament(uuid);
     }
+
+    boolean checkTournamentExists(String tournamentUuid) {
+         return !(getTournament(tournamentUuid) == null);
+    }
     
 }

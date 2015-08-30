@@ -20,13 +20,11 @@ import org.springframework.stereotype.Service;
 @Service("tournamentPersistence")
 public class TournamentPersistence {
 
-    private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
 
     @Autowired
     @Qualifier("dataSource")
     public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
     
@@ -52,10 +50,9 @@ public class TournamentPersistence {
 
     public Tournament editTournament(Tournament tournament) {
         
-        String SQL = "update tournaments set uuid = ?, name = ?, start_time = ?, size_limit = ?, location = ?, game = ?, host = ?, format = ?, description = ?, is_bracket_visible= ?";
+        String SQL = "update tournaments set name = ?, start_time = ?, size_limit = ?, location = ?, game = ?, host = ?, format = ?, description = ?, is_bracket_visible= ? where uuid = ?";
        
         jdbcTemplateObject.update(SQL,
-                tournament.getId(),
                 tournament.getName(),
                 tournament.getStartTime(),
                 tournament.getMaxEntrants(),
@@ -64,13 +61,16 @@ public class TournamentPersistence {
                 tournament.getHostId(),
                 tournament.getTournamentType().getValue(), 
                 tournament.getDescription(),
-                tournament.isMatchesRevealed());
+                tournament.isMatchesRevealed(),
+                tournament.getId());
         
+        //Throw on failure to update
         return tournament;
     }
 
     public Tournament getTournament(String uuid) {
         String SQL = "select * from tournaments where uuid = ?";
+        //Should throw exception for not finding
         Tournament tournament = jdbcTemplateObject.queryForObject(SQL,
                 new Object[]{uuid}, new TournamentMapper());
         return tournament;

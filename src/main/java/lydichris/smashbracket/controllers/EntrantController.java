@@ -36,24 +36,27 @@ public class EntrantController {
     }
 
     @RequestMapping(value = "/entrants", method = RequestMethod.DELETE)
-    Entrant deleteEntrant(@RequestParam String uuid) {
-        return entrantService.deleteEntrant(uuid);
+    boolean deleteEntrant(@RequestParam String uuid) {
+        entrantService.deleteEntrant(uuid);
+        return true;     
     }
     
     @RequestMapping(value = "/entrants", method = RequestMethod.POST)
     Entrant createEntrant(@RequestParam String tag,
             @RequestParam (value = "username", required = false) String username,
-            @RequestParam (value = "password", required = true)  String password,
+            @RequestParam (value = "password", required = false)  String password,
             @RequestParam String tournamentUuid)
             throws TournamentCreationException {
         return entrantService.createEntrant(tag, username, password, tournamentUuid);
     }
 
     @RequestMapping(value = "/entrants", method = RequestMethod.PUT)
-    Entrant editEntrant(@RequestParam String tag,
+    Entrant editEntrant(@RequestParam (value = "tag", required = false)  String tag,
+            @RequestParam (value = "seed", required = false) Integer seed,
             @RequestParam String entrantUuid) {
 
-        return entrantService.editEntrant(tag, entrantUuid);
+        //Seed throws null pointer when not provided :/
+        return entrantService.editEntrant(tag, seed, entrantUuid);
     }
 
 }
