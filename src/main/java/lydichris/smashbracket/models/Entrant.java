@@ -11,10 +11,10 @@ package lydichris.smashbracket.models;
  */
 public class Entrant {
     
-    private String id;
+    private String uuid;
     private String tag;
-    private String userId;
-    private String tournamentId;
+    private String userUuid;
+    private String tournamentUuid;
     private int seed = -1;
     
     public Entrant(){
@@ -22,15 +22,15 @@ public class Entrant {
     }
     
     public Entrant(String id, String tag, String userId, String tournamentId, int seed){
-        this.id = id;
+        this.uuid = id;
         this.tag = tag;
-        this.userId = userId;
-        this.tournamentId = tournamentId;
+        this.userUuid = userId;
+        this.tournamentUuid = tournamentId;
         this.seed = seed;
     }
     
-    public String getId() {
-        return id;
+    public String getUuid() {
+        return uuid;
     }
 
     public int getSeed() {
@@ -41,16 +41,16 @@ public class Entrant {
         this.seed = seed;
     }
 
-    public String getTournamentId() {
-        return tournamentId;
+    public String getTournamentUuid() {
+        return tournamentUuid;
     }
 
-    public void setTournamentId(String tournamentId) {
-        this.tournamentId = tournamentId;
+    public void setTournamentUuid(String tournamentId) {
+        this.tournamentUuid = tournamentId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUuid(String id) {
+        this.uuid = id;
     }
 
     public String getTag() {
@@ -61,11 +61,11 @@ public class Entrant {
         this.tag = tag;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserUuid() {
+        return userUuid;
     }
 
-    public void setUser(String userId) {
-        this.userId = userId;
+    public void setUserUuid(String userId) {
+        this.userUuid = userId;
     }
 }

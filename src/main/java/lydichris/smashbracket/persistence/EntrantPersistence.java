@@ -5,11 +5,13 @@
  */
 package lydichris.smashbracket.persistence;
 
+import java.util.List;
 import java.util.UUID;
 import javax.sql.DataSource;
 import lydichris.smashbracket.models.Entrant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +32,10 @@ public class EntrantPersistence {
     }
     
     public Entrant createEntrant(Entrant entrant) {
-        UUID uuid = UUID.nameUUIDFromBytes((entrant.getTag() + entrant.getTournamentId()).getBytes());
+        UUID uuid = UUID.nameUUIDFromBytes((entrant.getTag() + entrant.getTournamentUuid()).getBytes());
         String SQL = "insert into entrants (uuid, tournament_uuid, user_uuid, tag, seed) values (?, ?, ?, ?, ?)";
-        entrant.setId(uuid.toString());
-        jdbcTemplateObject.update(SQL, entrant.getId(), entrant.getTournamentId(), entrant.getUserId(), entrant.getTag(), entrant.getSeed());
+        entrant.setUuid(uuid.toString());
+        jdbcTemplateObject.update(SQL, entrant.getUuid(), entrant.getTournamentUuid(), entrant.getUserUuid(), entrant.getTag(), entrant.getSeed());
         return entrant;
     }
 
@@ -53,5 +55,10 @@ public class EntrantPersistence {
         String SQL = "update entrants set tag = COALESCE(?, tag), seed = COALESCE(CAST(? AS NUMBER), seed) where uuid = ?";  
         jdbcTemplateObject.update(SQL, tag, seed, entrantUuid);
         return getEntrant(entrantUuid);
+    }
+
+    public List<Entrant> getEntrantsInTournament(String uuid) {
+        String SQL = "select * from entrants where tournament_uuid = ?";
+        return jdbcTemplateObject.query(SQL, new BeanPropertyRowMapper(Entrant.class), uuid);
     }
 }

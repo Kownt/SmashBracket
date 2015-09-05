@@ -12,11 +12,19 @@ package lydichris.smashbracket.models;
 public class Match {
     
     private String id;
-    int winsEntrantOne;
-    int winsEntrantTwo;
-    Entrant winner;
-    Entrant entrantOne;
-    Entrant entrantTwo;
+    private String nextMatchUuidWinner;
+    private String firstPreviousMatch;
+    private String secondPreviousMatch;
+    private int winsEntrantOne;
+    private int winsEntrantTwo;
+    private int roundNumber;
+    private String winner;
+    private String entrantOne;
+    private String entrantTwo;
+
+    public Match() {
+       
+    }
 
     public String getId() {
         return id;
@@ -42,27 +50,59 @@ public class Match {
         this.winsEntrantTwo = winsEntrantTwo;
     }
 
-    public Entrant getWinner() {
+    public String getWinner() {
         return winner;
     }
 
-    public void setWinner(Entrant winner) {
+    public void setWinner(String winner) {
         this.winner = winner;
     }
 
-    public Entrant getEntrantOne() {
+    public String getEntrantOne() {
         return entrantOne;
     }
 
-    public void setEntrantOne(Entrant entrantOne) {
+    public void setEntrantOne(String entrantOne) {
         this.entrantOne = entrantOne;
     }
 
-    public Entrant getEntrantTwo() {
+    public String getEntrantTwo() {
         return entrantTwo;
     }
 
-    public void setEntrantTwo(Entrant entrantTwo) {
+    public void setEntrantTwo(String entrantTwo) {
         this.entrantTwo = entrantTwo;
+    }
+    
+    public String getNextMatchUuidWinner() {
+        return nextMatchUuidWinner;
+    }
+
+    public void setNextMatchUuidWinner(String nextMatchUuidWinner) {
+        this.nextMatchUuidWinner = nextMatchUuidWinner;
+    }
+
+    public String getFirstPreviousMatch() {
+        return firstPreviousMatch;
+    }
+
+    public void setFirstPreviousMatch(String firstPreviousMatch) {
+        this.firstPreviousMatch = firstPreviousMatch;
+    }
+
+    public String getSecondPreviousMatch() {
+        return secondPreviousMatch;
+    }
+
+    public void setSecondPreviousMatch(String secondPreviousMatch) {
+        this.secondPreviousMatch = secondPreviousMatch;
+    }
+    
+    public int getRoundNumber() {
+        return roundNumber;
+    }
+
+    public void setRoundNumber(int roundNumber) {
+        this.roundNumber = roundNumber;
     }
 }

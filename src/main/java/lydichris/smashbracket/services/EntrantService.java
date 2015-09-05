@@ -5,6 +5,7 @@
  */
 package lydichris.smashbracket.services;
 
+import java.util.List;
 import lydichris.smashbracket.enums.EntrantCreationExceptionEnum;
 import lydichris.smashbracket.exceptions.EntrantCreationException;
 import lydichris.smashbracket.models.Entrant;
@@ -31,7 +32,7 @@ public class EntrantService {
     public Entrant createEntrant(String tag, String username, String password, String tournamentUuid) {
         Entrant entrant = new Entrant();
         entrant.setTag(tag);
-        entrant.setTournamentId(tournamentUuid);
+        entrant.setTournamentUuid(tournamentUuid);
         
         if(!tournamentService.checkTournamentExists(tournamentUuid)){
             throw new EntrantCreationException( EntrantCreationExceptionEnum.TOURNAMENT_LOOKUP_FAILED);
@@ -39,7 +40,7 @@ public class EntrantService {
         
         if(!StringUtils.isEmpty(username)){
             if(userService.checkUsernamePasswordHashExists(username, password)) {
-                entrant.setUser(userService.getUserByUserName(username).getId());
+                entrant.setUserUuid(userService.getUserByUserName(username).getId());
             } else {
                 throw new EntrantCreationException( EntrantCreationExceptionEnum.LOOKUP_FAILED);
             }
@@ -55,6 +56,10 @@ public class EntrantService {
 
     public Entrant editEntrant(String tag, Integer seed, String entrantUuid) {
         return entrantPersistence.editEntant(tag, seed, entrantUuid);
+    }
+
+    List<Entrant> getEntrantsInTournament(String id) {
+        return entrantPersistence.getEntrantsInTournament(id);
     }
     
 }

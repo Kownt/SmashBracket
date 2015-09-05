@@ -5,10 +5,7 @@
  */
 package lydichris.smashbracket.controllers;
 
-import lydichris.smashbracket.exceptions.TournamentCreationException;
-import lydichris.smashbracket.exceptions.TournamentNotFoundException;
 import lydichris.smashbracket.models.Entrant;
-import lydichris.smashbracket.models.Tournament;
 import lydichris.smashbracket.services.EntrantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +43,7 @@ public class EntrantController {
             @RequestParam (value = "username", required = false) String username,
             @RequestParam (value = "password", required = false)  String password,
             @RequestParam String tournamentUuid)
-            throws TournamentCreationException {
+            {
         return entrantService.createEntrant(tag, username, password, tournamentUuid);
     }
 
