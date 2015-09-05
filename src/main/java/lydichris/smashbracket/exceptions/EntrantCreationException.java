@@ -5,18 +5,18 @@
  */
 package lydichris.smashbracket.exceptions;
 
-import lydichris.smashbracket.enums.UserCreationExceptionEnum;
+import lydichris.smashbracket.enums.EntrantCreationExceptionEnum;
 
 /**
  *
  * @author cgmcandrews
  */
-public class UserCreationException extends RuntimeException {
+public class EntrantCreationException extends RuntimeException {
 
     private static final long serialVersionUID = 4664456874499611218L;
-    private UserCreationExceptionEnum errorEnum = UserCreationExceptionEnum.UNKNOWN_ERROR;
+    private EntrantCreationExceptionEnum errorEnum = EntrantCreationExceptionEnum.UNKNOWN_ERROR;
 
-    public UserCreationException (UserCreationExceptionEnum code){
+    public EntrantCreationException (EntrantCreationExceptionEnum code){
         super(code.getValue());
         errorEnum = code;
     }

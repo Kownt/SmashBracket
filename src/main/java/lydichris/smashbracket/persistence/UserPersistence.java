@@ -5,7 +5,6 @@
  */
 package lydichris.smashbracket.persistence;
 
-import java.sql.ResultSet;
 import javax.sql.DataSource;
 import lydichris.smashbracket.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +21,12 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 @Service("userPersistence")
 public class UserPersistence {
 
-    private DataSource dataSource;
+
     private JdbcTemplate jdbcTemplateObject;
 
     @Autowired
     @Qualifier("dataSource")
     public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
 
@@ -64,6 +62,28 @@ public class UserPersistence {
             return result.getInt("count(username)") > 0;
         } else {
             return false;
+        }
+    }
+
+    public boolean checkUsernamePasswordHashExists(String username, byte[] password) {
+        String SQL = "select count(username) from users where username = ? AND passwordHash = ?";
+        SqlRowSet result = jdbcTemplateObject.queryForRowSet(SQL, username, password);
+        if (result.next()) {
+            return result.getInt("count(username)") > 0;
+        } else {
+            return false;
+        }
+    }
+
+    public User getUserByUserName(String username) {
+       String SQL = "select * from users where username = ?";
+        SqlRowSet result = jdbcTemplateObject.queryForRowSet(SQL, username);
+        if (result.next()) {
+            User user = jdbcTemplateObject.queryForObject(SQL,
+                new Object[]{username}, new UserMapper());
+            return user;
+        } else {
+            return null;
         }
     }
 }
