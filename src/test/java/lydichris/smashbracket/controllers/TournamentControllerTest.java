@@ -8,6 +8,8 @@ package lydichris.smashbracket.controllers;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 import lydichris.smashbracket.enums.TournamentType;
 import lydichris.smashbracket.models.Tournament;
 import lydichris.smashbracket.services.TournamentService;
@@ -45,10 +47,11 @@ public class TournamentControllerTest {
         maxEntrants = 1;
         game = "Soccer";
         type = TournamentType.MULTI_STAGE;
-        startTime = "Thu Jun 18 20:56:02 EDT 2009";
         hostId = "12";
         uuid = "334";
-        formatter = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+        startTime = "Mon, 03 Jul 2006 21:44:38 GMT";
+        formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:m:s zzz", Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
         startTimeDate = formatter.parse(startTime);
     }
 

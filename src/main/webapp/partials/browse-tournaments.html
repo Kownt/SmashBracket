@@ -1,0 +1,19 @@
+<div class="listBrowser" >
+<h1> Browse Tournaments </h1>
+<table>
+    <tr>
+        <th> Name </th>
+        <th> Starting at </th>
+        <th> Game </th>
+        <th> Location </th>
+        <th> Now Streaming </th>
+    </tr>
+    <tr  ng-repeat="tournament  in tournamentListing" ng-click="go(tournament.id)">
+        <td> {{tournament.name}} </td>
+        <td> {{tournament.startTime}} </td>
+        <td> {{tournament.game}} </td>
+        <td> location </td>
+        <td> No </td>
+    </tr>
+</table>
+</div>

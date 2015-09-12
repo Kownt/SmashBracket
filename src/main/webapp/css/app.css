@@ -1,98 +1,84 @@
-html, body
-{
+main {
     padding:0;
     margin:0;
     height:100%;
-}
-#navBar
-{
-    min-height:100%;
-    position:relative;
-    height:100%;
-}
-header
-{
-    background-color:#115EA2;
-    min-height:100px;
     width:100%;
-    position:relative;
+    position: absolute;
+    top: 136px;
+}
 
-}
-#main
-{
-    width:1300px;
-    margin-left:auto;
-    margin-right:auto;
-    background-color:#F1F2F3;
-    min-height:90%;
-    height:auto;
-    height:89%;
-    margin:0 auto -50px;
-    vertical-align:bottom;
-}
-#footer
-{
-    position:fixed;
-    width:100%;
-    bottom:0;
-    height:35px;
-    background-color: #115EA2;
-}
-header img
-{
+#navBar {
     float:left;
+    background-color:#115EA2;
+    min-height:96px;
+    max-height:96px;
+    width: 100%;
+    min-width:800px;
+}
+#navBar a {
+    text-decoration:none;
+    color: #FFFFFF;
+}
+#navBar h2 {
+    font-size:46px;
+    color:#FFFFFF;
+    font-weight:bold;
+    font-family: Sans-serif;
+    text-decoration:none;
+}
+#navBar img {
+    float: left;
     display:inline;
 }
 
-header h2
-{
-    text-align:center;
-    font-size:44px;
-    color:#FFFFFF;
-    left:0px;
-    top:20px;
-    font-weight:bold;
-    font-family: Sans-serif;
-    float:left;
-    margin-top:20px;
-    margin-left:20px;
-    text-decoration:none;
-}
 
-header h2, a, a:visited, a:hover, a:active
-{
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-
-/* NAVIGATION BAR CODE */
-
-
-nav
-{
-    position:absolute;
-    top:100px;
-    left:0;
-    right:0;
-    bottom:0;
+nav {
+    margin:0;
+    position: absolute;
+    top: 96px;
     background-color:#070E9D;
-    min-width:800px;
     text-align:left;
-    height:20px;
-    padding:10px 20px;
+    padding:11px 20px;
+    width: 100%;
+    min-width:800px;
 }
-
-
-nav a
-{
+nav a {
     font-size:14px;
-    margin:10px 0;height:20px;
-    padding:12px 10px;
+    height: 20px;
+    padding:12px;
     text-decoration:none;
+    color: #FFFFFF;
+}
+nav a:hover {
+    background-color:#03074A;
 }
 
-nav a:hover
-{
-    background-color:#03074A;
+/* ListBrowser */
+ table {
+    width:70%;
+    margin-left:15%;
+    margin-right:15%;
+    border-collapse:collapse;
+    border: 1px solid black;
+}
+th {
+    background-color:#115EA2;
+    color:#FFFFFF;
+    border: 1px solid black;
+}
+tr:nth-child(odd) {
+    background-color: #88aed0;
+    font-size:20px;
+}
+tr:nth-child(even) {
+    font-size:20px;
+}
+tr:hover {
+    background: #115EA2;
+}
+td:not(:first-child) {
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right:10px;
+    padding-left:10px;
 }

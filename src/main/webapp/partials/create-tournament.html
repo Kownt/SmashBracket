@@ -1,0 +1,23 @@
+<div class="createTournament">
+    <h1>Create Tournament</h1>
+    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+    <label>Name:</label> <br/>
+    <input type="text" name="name" ng-model="name" required> <br/>
+    <label>Description:</label> <br/>
+    <input type="text" name="description" ng-model="description"> <br/>
+    <label>Max Entrants:</label> <br/>
+    <input type="number" name="entrantLimit" ng-model="entrantLimit"> <br/>
+    <label>Game:</label> <br/>
+    <input type="text" name="game" ng-model="game"> <br/>
+    <label>Start Time:</label> <br/>
+    <input type="datetime-local" name="startTime" ng-model="startTime"> <br/>
+    <label>Tournament Type:</label> <br/>
+    <select ng-model="tournamentType">
+        <option value="SINGLE_ELIMINATION">Single Elimination</option>
+        <option value="DOUBLE_ELIMINATION">Double Elimination</option>
+        <option value="SWISS">Swiss</option>
+        <option value="ROUND_ROBIN">Round Robin</option>
+    </select>
+    <br/>
+    <button ng-click="createTournament()">Create!</button>
+</div>

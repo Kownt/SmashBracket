@@ -6,6 +6,7 @@
 package lydichris.smashbracket.services;
 
 import java.util.Date;
+import java.util.List;
 import lydichris.smashbracket.enums.TournamentType;
 import lydichris.smashbracket.models.Tournament;
 import lydichris.smashbracket.persistence.TournamentPersistence;
@@ -67,5 +68,17 @@ public class TournamentService {
     boolean checkTournamentExists(String tournamentUuid) {
          return !(getTournament(tournamentUuid) == null);
     }
+
+    public List<Tournament> getTournament(int offset, int size, String query) {
+        int MAX_QUERY_SIZE = 25;
+        
+        //TODO implement query...
+        if(size > MAX_QUERY_SIZE){
+            throw new RuntimeException("Query size exceeded limits please limit your request to " + MAX_QUERY_SIZE);
+        }
+        return tournamentPersistence.getTournaments(offset, size, query);
+        
+    }
+    
     
 }

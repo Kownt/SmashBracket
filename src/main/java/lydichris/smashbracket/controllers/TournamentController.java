@@ -8,10 +8,14 @@ package lydichris.smashbracket.controllers;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 import lydichris.smashbracket.enums.TournamentType;
 import lydichris.smashbracket.models.Tournament;
 import lydichris.smashbracket.services.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,9 +34,17 @@ public class TournamentController {
         this.tournamentService = tournamentService;
     }
     
-    @RequestMapping(value = "/tournaments", method = RequestMethod.GET)
-    Tournament getTournament(@RequestParam String uuid) {
+    @RequestMapping(value = "/tournaments/{uuid}", method = RequestMethod.GET)
+    Tournament getTournament(@PathVariable String uuid) {
 	return tournamentService.getTournament(uuid);
+    }
+    
+    @RequestMapping(value = "/tournaments", method = RequestMethod.GET)
+    List<Tournament> getTournaments(@RequestParam int offset,
+                              @RequestParam int size,
+                              @RequestParam String query) {
+        
+	return tournamentService.getTournament(offset, size, query);
     }
     
     @RequestMapping(value = "/tournaments", method = RequestMethod.DELETE)
@@ -48,8 +60,8 @@ public class TournamentController {
             @RequestParam TournamentType tournamentType,
             @RequestParam String startTime,
             @RequestParam String hostId) throws ParseException {
-       
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:m:s zzz", Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date startTimeDate = formatter.parse(startTime);
         //Should take in userName for host somehow
         //Consider adding location
@@ -68,7 +80,8 @@ public class TournamentController {
             @RequestParam String hostId,
             @RequestParam boolean seed) throws ParseException {
         
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:m:s zzz", Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date startTimeDate = formatter.parse(startTime);
         
 	return tournamentService.editTournament(uuid, name, description, maxEntrants, game, tournamentType, startTimeDate, hostId, seed);
