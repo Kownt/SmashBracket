@@ -8,6 +8,7 @@ package lydichris.smashbracket.services;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lydichris.smashbracket.enums.UserCreationExceptionEnum;
@@ -98,6 +99,9 @@ public class UserService {
 
     //Consider making a util class.
     public byte[] generatePasswordHash(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        if (password == null){
+            throw new UserCreationException(UserCreationExceptionEnum.PASSWORD_IS_BAD); 
+        }
         MessageDigest digest = MessageDigest.getInstance("SHA-512");
         digest.reset();
         return digest.digest(password.getBytes("UTF-8"));
@@ -106,10 +110,10 @@ public class UserService {
     boolean checkUsernamePasswordHashExists(String username, String password) {
         try {
            return userPersistence.checkUsernamePasswordHashExists(username, generatePasswordHash(password));
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException | SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, "Password hashing failed", ex);
             throw new UserCreationException(UserCreationExceptionEnum.PASSWORD_IS_BAD);
-        }
+        }    
     }
 
     User getUserByUserName(String username) {

@@ -58,7 +58,7 @@ public class EntrantService {
         return entrantPersistence.editEntant(tag, seed, entrantUuid);
     }
 
-    List<Entrant> getEntrantsInTournament(String id) {
+    public List<Entrant> getEntrantsInTournament(String id) {
         return entrantPersistence.getEntrantsInTournament(id);
     }
     

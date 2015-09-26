@@ -5,6 +5,9 @@
  */
 package lydichris.smashbracket.persistence;
 
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.SQLException;
 import javax.sql.DataSource;
 import lydichris.smashbracket.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialClob;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 /**
@@ -65,14 +70,16 @@ public class UserPersistence {
         }
     }
 
-    public boolean checkUsernamePasswordHashExists(String username, byte[] password) {
+    public boolean checkUsernamePasswordHashExists(String username, byte[] password) throws SQLException {
         String SQL = "select count(username) from users where username = ? AND passwordHash = ?";
-        SqlRowSet result = jdbcTemplateObject.queryForRowSet(SQL, username, password);
-        if (result.next()) {
-            return result.getInt("count(username)") > 0;
-        } else {
-            return false;
-        }
+        Object[] params = new Object[]{ 
+        username,
+        password
+        };
+        
+        int result = jdbcTemplateObject.queryForObject(SQL, params, Integer.class);
+        return result > 0;
+       
     }
 
     public User getUserByUserName(String username) {

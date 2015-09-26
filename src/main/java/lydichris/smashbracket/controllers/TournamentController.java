@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import lydichris.smashbracket.enums.TournamentType;
+import lydichris.smashbracket.models.Entrant;
 import lydichris.smashbracket.models.Tournament;
+import lydichris.smashbracket.services.EntrantService;
 import lydichris.smashbracket.services.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TournamentController {
    
     @Autowired TournamentService tournamentService;
+    @Autowired EntrantService entrantService;
     
     public void setTournamentService(TournamentService tournamentService){
         this.tournamentService = tournamentService;
@@ -37,6 +40,11 @@ public class TournamentController {
     @RequestMapping(value = "/tournaments/{uuid}", method = RequestMethod.GET)
     Tournament getTournament(@PathVariable String uuid) {
 	return tournamentService.getTournament(uuid);
+    }
+    
+    @RequestMapping(value = "/tournaments/{uuid}/entrants", method = RequestMethod.GET)
+    List<Entrant> getEntrantsInTournament(@PathVariable String uuid) {
+	return entrantService.getEntrantsInTournament(uuid);
     }
     
     @RequestMapping(value = "/tournaments", method = RequestMethod.GET)
