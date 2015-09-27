@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import lydichris.smashbracket.enums.TournamentType;
+import lydichris.smashbracket.models.Entrant;
+import lydichris.smashbracket.models.Match;
 import lydichris.smashbracket.models.Tournament;
+import lydichris.smashbracket.services.EntrantService;
+import lydichris.smashbracket.services.MatchService;
 import lydichris.smashbracket.services.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +33,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TournamentController {
    
     @Autowired TournamentService tournamentService;
-    
+    @Autowired EntrantService entrantService;
+    @Autowired MatchService matchService;
+            
     public void setTournamentService(TournamentService tournamentService){
         this.tournamentService = tournamentService;
     }
@@ -37,6 +43,16 @@ public class TournamentController {
     @RequestMapping(value = "/tournaments/{uuid}", method = RequestMethod.GET)
     Tournament getTournament(@PathVariable String uuid) {
 	return tournamentService.getTournament(uuid);
+    }
+    
+    @RequestMapping(value = "/tournaments/{tournamentUuid}/entrants", method = RequestMethod.GET)
+    List<Entrant> getEntrantsInTournament(@PathVariable String tournamentUuid) {
+	return entrantService.getEntrantsInTournament(tournamentUuid);
+    }
+    
+    @RequestMapping(value = "/tournaments/{tournamentUuid}/matches", method = RequestMethod.GET)
+    List<Match> getMatchesInTournament(@PathVariable String tournamentUuid) {
+	return matchService.getMatchesInTournament(tournamentUuid);
     }
     
     @RequestMapping(value = "/tournaments", method = RequestMethod.GET)

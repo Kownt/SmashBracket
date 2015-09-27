@@ -5,7 +5,10 @@
  */
 package lydichris.smashbracket.services;
 
+import java.util.List;
 import lydichris.smashbracket.models.Match;
+import lydichris.smashbracket.persistence.MatchPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,8 +18,13 @@ import org.springframework.stereotype.Service;
 @Service("matchService")
 public class MatchService {
 
-    public Match getMatch(String uuid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Autowired MatchPersistence matchPersistence;
+    public Match getMatch(String matchUuid) {
+        return matchPersistence.getMatch(matchUuid);
+    }
+
+    public List<Match> getMatchesInTournament(String tournamentUuid) {
+        return matchPersistence.getMatchesInTournament(tournamentUuid);
     }
     
     

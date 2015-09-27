@@ -12,6 +12,7 @@ package lydichris.smashbracket.models;
 public class Match {
     
     private String id;
+    private String tournamentUuid;
     private String nextMatchUuidWinner;
     private String firstPreviousMatch;
     private String secondPreviousMatch;
@@ -104,5 +105,14 @@ public class Match {
 
     public void setRoundNumber(int roundNumber) {
         this.roundNumber = roundNumber;
+    }
+    
+    
+    public String getTournamentUuid() {
+        return tournamentUuid;
+    }
+
+    public void setTournamentUuid(String tournamentUuid) {
+        this.tournamentUuid = tournamentUuid;
     }
 }
