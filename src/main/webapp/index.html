@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>SmashBracket</title>
         <link rel="stylesheet" href="css/app.css">
-
+        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
         <script src="angular/jquery-2.1.4.js"></script>
         <script src="angular/angular.js"></script>
         <script src="angular/angular-animate.js"></script>
@@ -21,18 +21,17 @@
     </head>
     <body>
         <header>
-            <div id="navBar">
-                <a href="/"><img src="/img/smashBracket.png" alt="SmashBracket Icon" style="width:96px;"></a>
-                <h2><a href="/">Smash Bracket</a></h2>
-            </div>
+                <div id="navBar">
+                    <a href="/"><img src="/img/smashBracket.png" alt="SmashBracket Icon" style="width:96px;"></a>
+                    <h2><a href="/"><em><strong class="logo"><span id="logo-first">S</span>mash</strong></em> Bracket</a></h2>
+                </div>
+                <nav>
+                    <a href="/login">Login</a>
+                    <a href="/register">Sign Up</a>
+                    <a href="/browse">Browse Tournaments</a>
+                    <a href="/create">Create Tournament</a>
+                </nav>
         </header>
-        <nav>
-                <a href="/login">Log in</a>
-                <a href="/register">Sign up</a>
-                <a href="/browse">Browse Tournaments</a>
-                <a href="/create">Create Tournament</a>
-        </nav>
-
         <main>
             <div class="view-container">
                 <div ng-view class="view-frame"></div>

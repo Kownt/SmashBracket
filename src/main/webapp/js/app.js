@@ -30,6 +30,18 @@ smashBracketApp.config(['$routeProvider', '$locationProvider',
                     templateUrl: 'partials/user-login.html',
                     controller: 'UserRegistrationCtrl'
                 }).
+                when('/browse', {
+                    templateUrl: 'partials/browse-tournaments.html',
+                    controller: 'TournamentBrowserCtrl'
+                }).
+                when('/tournaments/:uuid', {
+                    templateUrl: 'partials/tournaments.html',
+                    controller: 'TournamentCtrl'
+                }).
+                when('/create', {
+                    templateUrl: 'partials/create-tournament.html',
+                    controller: 'CreateTournamentCtrl'
+                }).
                 otherwise({
                     redirectTo: '/'
                 });

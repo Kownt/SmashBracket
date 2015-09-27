@@ -5,6 +5,8 @@
  */
 package lydichris.smashbracket.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import javax.sql.DataSource;
 import lydichris.smashbracket.models.Tournament;
@@ -79,6 +81,16 @@ public class TournamentPersistence {
     public void deleteTournament(String uuid) {
         String SQL = "delete from tournaments where uuid = ?";
         jdbcTemplateObject.update(SQL, uuid);
+    }
+
+    public List<Tournament> getTournaments(int offset, int size, String query) {
+        String SQL = "select uuid from tournaments where rownum > " + offset + " and rownum <= " + (offset + size);
+        List<String> tournamentUuids = (List<String>) jdbcTemplateObject.queryForList(SQL, String.class);
+        List<Tournament> tournaments = new ArrayList<>();
+        for(String tournamentUuid : tournamentUuids){
+            tournaments.add(getTournament(tournamentUuid));
+        }
+        return tournaments;
     }
     
 }

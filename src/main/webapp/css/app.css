@@ -1,98 +1,172 @@
-html, body
-{
-    padding:0;
-    margin:0;
-    height:100%;
-}
-#navBar
-{
-    min-height:100%;
-    position:relative;
-    height:100%;
-}
-header
-{
-    background-color:#115EA2;
-    min-height:100px;
-    width:100%;
-    position:relative;
-
-}
-#main
-{
-    width:1300px;
-    margin-left:auto;
-    margin-right:auto;
-    background-color:#F1F2F3;
-    min-height:90%;
-    height:auto;
-    height:89%;
-    margin:0 auto -50px;
-    vertical-align:bottom;
-}
-#footer
-{
-    position:fixed;
-    width:100%;
-    bottom:0;
-    height:35px;
-    background-color: #115EA2;
-}
-header img
-{
-    float:left;
-    display:inline;
+main {
+    height: 100%;
+    width: 96%;
+    position: absolute;
+    top: 136px;
+    margin-top: 20px;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
-header h2
-{
-    text-align:center;
-    font-size:44px;
-    color:#FFFFFF;
-    left:0px;
-    top:20px;
-    font-weight:bold;
+body {
+    margin: 0px;
+    font-size: 14px;
     font-family: Sans-serif;
-    float:left;
-    margin-top:20px;
-    margin-left:20px;
-    text-decoration:none;
 }
 
-header h2, a, a:visited, a:hover, a:active
-{
+#navBar {
+    float: left;
+    background-color: #115EA2;
+    min-height: 96px;
+    max-height: 96px;
+    width: 100%;
+}
+#navBar a {
+    text-decoration: none;
     color: #FFFFFF;
+}
+#navBar h2 {
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: Sans-serif;
     text-decoration: none;
 }
-
-
-/* NAVIGATION BAR CODE */
-
-
-nav
-{
-    position:absolute;
-    top:100px;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color:#070E9D;
-    min-width:800px;
-    text-align:left;
-    height:20px;
-    padding:10px 20px;
+#navBar img {
+    float: left;
+    display: inline;
+}
+nav {
+    position: absolute;
+    top: 96px;
+    background-color: #070E9D;
+    text-align: left;
+    padding: 11px 0px 11px 0px;
+    width: 100%;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+}
+nav a {
+    font-size: 14px;
+    height: 20px;
+    padding: 8px;
+    margin: 5px;
+    text-decoration: none;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+nav a:hover {
+    background-color: #03074A;
+    color: red;
 }
 
-
-nav a
-{
-    font-size:14px;
-    margin:10px 0;height:20px;
-    padding:12px 10px;
-    text-decoration:none;
+.logo {
+    letter-spacing: -4px;
+    color: red;
+    text-transform: uppercase;
+    font-size: 40px;
 }
 
-nav a:hover
-{
-    background-color:#03074A;
+#logo-first {
+    font-size: 52px;
+    margin-right: 3px;
+}
+
+/* ListBrowser */
+table {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+th {
+    background-color: #115EA2;
+    color: #FFFFFF;
+    border: 1px solid black;
+}
+tr:nth-child(odd) {
+    background-color: #88aed0;
+    font-size: 20px;
+}
+tr:nth-child(even) {
+    font-size: 20px;
+}
+tr:hover {
+    background: #115EA2;
+}
+td:not(:first-child) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.btn {
+    border-radius: 5px;
+    border: 1px solid #04106D;
+    padding: 7px;
+    background-color: #070E9D;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+.btn:hover {
+    background-color: #04106D;
+    border-color: #010436;
+}
+.btn:active {
+    background-color: black;
+    border-color: black;
+}
+.btn:active, .btn:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.alert-danger {
+    background-color: #FFB2B2;
+    border: 2px solid red;
+    padding: 5px 10px 5px 10px;
+    width: 94%;
+    margin-left: 2%;
+    border-radius: 5px;
+}
+label {
+    font-weight: bold;
+}
+input {
+    padding: 3px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+.view-frame {
+    margin-left: 4%;
+}
+.small-form {
+    display: block;
+    margin-right: 50%;
+}
+.small-form input {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    display: inline;
+    margin-bottom: 5px;
+}
+.small-form button {
+    padding-left: 0px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.small-form input[name='startTime'] {
+    width: 66%;
+}
+.small-form select {
+    font-size: 14px;
+    width: 66%;
+    padding: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
