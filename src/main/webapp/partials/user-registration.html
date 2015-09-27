@@ -1,17 +1,34 @@
-<div ng-show="error" class="alert alert-danger">{{error}}</div>
-<label>UserName:</label> <br/>
-<input type="text" name="input" ng-model="userName" required> <br/>
-<label>Password:</label> <br/>
-<input type="password" name="input" ng-model="password" required> <br/>
-<label>Confirm Password:</label> <br/>
-<input type="password" name="input" ng-model="confirmationPassword" required> <br/>
-<label>E-Mail:</label> <br/>
-<input type="text" name="input" ng-model="email" required> <br/>
-<button ng-click="registerUser()">Register!</button>
+<div ng-show="error" class="alert alert-danger">
+    {{error}}
+</div>
+<div class="small-form">
+    <h1>Sign Up</h1>
+    <label>UserName:</label>
+    <br/>
+    <input type="text" name="input" ng-model="userName" required>
+    <br/>
+    <label>Password:</label>
+    <br/>
+    <input type="password" name="input" ng-model="password" required>
+    <br/>
+    <label>Confirm Password:</label>
+    <br/>
+    <input type="password" name="input" ng-model="confirmationPassword" required>
+    <br/>
+    <label>E-Mail:</label>
+    <br/>
+    <input type="text" name="input" ng-model="email" required>
+    <br/>
+    <button class="btn" ng-click="registerUser()">
+        Register!
+    </button>
+</div>
 
 <ul class="usersRegistered ">
     <li ng-repeat="userRegistered  in usersRegistered">
         <span>{{userRegistered.userName}}</span>
-        <p>{{userRegistered.id}}</p>
+        <p>
+            {{userRegistered.id}}
+        </p>
     </li>
 </ul>
