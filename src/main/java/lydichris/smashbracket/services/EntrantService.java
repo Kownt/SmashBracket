@@ -35,14 +35,17 @@ public class EntrantService {
         entrant.setTournamentUuid(tournamentUuid);
         
         if(!tournamentService.checkTournamentExists(tournamentUuid)){
-            throw new EntrantCreationException( EntrantCreationExceptionEnum.TOURNAMENT_LOOKUP_FAILED);
+            throw new EntrantCreationException(EntrantCreationExceptionEnum.TOURNAMENT_LOOKUP_FAILED);
         }
         
+        if (StringUtils.isEmpty(tag)){
+            throw new EntrantCreationException(EntrantCreationExceptionEnum.TAG_IS_EMPTY);
+        }
         if(!StringUtils.isEmpty(username)){
             if(userService.checkUsernamePasswordHashExists(username, password)) {
                 entrant.setUserUuid(userService.getUserByUserName(username).getId());
             } else {
-                throw new EntrantCreationException( EntrantCreationExceptionEnum.LOOKUP_FAILED);
+                throw new EntrantCreationException(EntrantCreationExceptionEnum.LOOKUP_FAILED);
             }
         }
         //Throw exception if creating entrant exceeds limit
@@ -58,8 +61,7 @@ public class EntrantService {
         return entrantPersistence.editEntant(tag, seed, entrantUuid);
     }
 
-    public List<Entrant> getEntrantsInTournament(String id) {
-        return entrantPersistence.getEntrantsInTournament(id);
-    }
-    
+    public List<Entrant> getEntrantsInTournament(String tournamentUuid) {
+        return entrantPersistence.getEntrantsInTournament(tournamentUuid);
+    } 
 }

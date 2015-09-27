@@ -35,6 +35,7 @@ public class BracketService {
 
     public List<Match> createBrackets(String tournamentUuid) {
         Tournament tournament = tournamentService.getTournament(tournamentUuid);
+        dropExistingBracket(tournament);
         return generateBracket(tournament);
     }
 
@@ -58,8 +59,8 @@ public class BracketService {
             entrants.add(bye);
         }
 
-        List<Match> rounds = generateFirstRounds(entrants);
-        rounds.addAll(generateRemainingRounds(rounds, 1));
+        List<Match> rounds = generateFirstRounds(entrants, tournament);
+        rounds.addAll(generateRemainingRounds(rounds, 1, tournament));
         return matchPersistence.persistMatches(rounds);
     }
 
@@ -76,7 +77,7 @@ public class BracketService {
         return size;
     }
 
-    private List<Match> generateFirstRounds(List<Entrant> entrants) {
+    private List<Match> generateFirstRounds(List<Entrant> entrants,Tournament tournament) {
         //Defect 1 is a power of 2 :/ need to prevent that
         //Todo the first rounds need to forward reference the next
         List<Entrant> toPlace = new ArrayList<>(entrants);
@@ -87,6 +88,7 @@ public class BracketService {
             int bottomSeed = toPlace.size() - 1;
             Match match = new Match();
             match.setId(UUID.randomUUID().toString());
+            match.setTournamentUuid(tournament.getId());
             match.setEntrantOne(toPlace.get(topSeed).getUuid());
             match.setEntrantTwo(toPlace.get(bottomSeed).getUuid());
             match.setRoundNumber(round);
@@ -97,16 +99,16 @@ public class BracketService {
         return matches;
     }
 
-    private List<Match> generateRemainingRounds(List<Match> priorRounds, int roundNumber) {
-        List<Match> currentRounds = generateCurrentRound(priorRounds, roundNumber);
+    private List<Match> generateRemainingRounds(List<Match> priorRounds, int roundNumber, Tournament tournament) {
+        List<Match> currentRounds = generateCurrentRound(priorRounds, roundNumber, tournament);
         
         if(currentRounds.size() > 1) {
-            currentRounds.addAll(generateRemainingRounds(currentRounds, roundNumber + 1));
+            currentRounds.addAll(generateRemainingRounds(currentRounds, roundNumber + 1, tournament));
         }
         return currentRounds;
     }
 
-    private List<Match> generateCurrentRound(List<Match> priorRounds, int roundNumber) {
+    private List<Match> generateCurrentRound(List<Match> priorRounds, int roundNumber, Tournament tournament) {
         List<Match> toPlace = new ArrayList<>(priorRounds);
         List<Match> currentRound = new ArrayList<>();
         int topMatch = 0;
@@ -114,6 +116,7 @@ public class BracketService {
         while (toPlace.size() > 1) {
             Match match = new Match();
             match.setId(UUID.randomUUID().toString());
+            match.setTournamentUuid(tournament.getId());
             match.setFirstPreviousMatch(toPlace.get(topMatch).getId());
             match.setSecondPreviousMatch(toPlace.get(bottomMatch).getId());
             match.setRoundNumber(roundNumber + 1);
@@ -127,6 +130,10 @@ public class BracketService {
         }
         
         return currentRound;
+    }
+
+    private void dropExistingBracket(Tournament tournament) {
+       matchPersistence.removeMatches(tournament.getId());
     }
 
 }

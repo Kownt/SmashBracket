@@ -14,7 +14,8 @@ public enum  EntrantCreationExceptionEnum {
         LOOKUP_FAILED("Failed to find user with specified password"),
         TOURNAMENT_LOOKUP_FAILED("Failed to find specified tournament"),
         DUPLICATE_TAG("An entrant with that tag is already entered"),
-        UNKNOWN_ERROR("Unknown Error");
+        UNKNOWN_ERROR("Unknown Error"),
+        TAG_IS_EMPTY("Tag cannot be empty");
         
         private final String value;
 

@@ -95,6 +95,10 @@ smashBracketControllers.controller('TournamentBrowserCtrl', ['$scope', '$http', 
 smashBracketControllers.controller('TournamentCtrl', ['$scope', '$http', '$location', 'AuthenticationService', '$routeParams',
     function ($scope, $http, $location, AuthenticationService, $routeParams) {
         $scope.entrants = [];
+        $scope.username = "";
+        $scope.password = "";
+        $scope.tag = "";
+
         var tournamentUuid = $routeParams.uuid;
         var req = {
             method: 'GET',
@@ -108,32 +112,46 @@ smashBracketControllers.controller('TournamentCtrl', ['$scope', '$http', '$locat
                     });
                     $scope.dataLoading = false;
                 }).error(function (response) {
-                    $scope.error = response.message;
-                        $scope.dataLoading = false;
-                });
+            $scope.error = response.message;
+                $scope.dataLoading = false;
+        });
 
-                $scope.addEntrant = function () {
-                    var addEntrantReq = {
-                        method: 'POST',
-                        url: 'http://127.0.0.1:8080/entrants?tournamentUuid=' + tournamentUuid
-                                + '&tag=' + $scope.tag
-                                + '&username=' + $scope.username
-                                + '&password=' + $scope.password
-                    };
-                    $http(addEntrantReq).
-                            success(function (response) {
-                                $scope.entrants.push(response);
-                                $scope.tag = null;
-                                $scope.username = null;
-                                $scope.password = null;
-                                $scope.error = null;
-                            }).error(function (response) {
+        $scope.addEntrant = function () {
+            var addEntrantReq = {
+                method: 'POST',
+                url: 'http://127.0.0.1:8080/entrants?tournamentUuid=' + tournamentUuid
+                        + '&tag=' + $scope.tag
+                        + '&username=' + $scope.username
+                        + '&password=' + $scope.password
+            };
+            $http(addEntrantReq).
+                    success(function (response) {
+                        $scope.entrants.push(response);
+                        $scope.tag = "";
+                        $scope.username = "";
+                        $scope.password = "";
+                        $scope.error = null;
+                    }).error(function (response) {
+                $scope.error = response.message;
+            });
+        };
+
+        $scope.generateMatches = function () {
+            var generateBracketsReq = {
+                method: 'POST',
+                url: 'http://127.0.0.1:8080/matches/'+ tournamentUuid
+            };
+            $http(generateBracketsReq).
+                    success(function (response) {
+                        $scope.matches = [];
+                        angular.forEach(response, function (match) {
+                            $scope.matches.push(match);
+                        });
+                    }).error(function (response) {
                         $scope.error = response.message;
-                    });
-                };
-
-                //add handling
-            }]);
+            });
+        };
+    }]);
 
 smashBracketControllers.controller('CreateTournamentCtrl', ['$scope', '$http', '$location', 'AuthenticationService',
     function ($scope, $http, $location, AuthenticationService) {

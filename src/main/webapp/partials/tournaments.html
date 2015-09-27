@@ -15,4 +15,12 @@
     <label>Password:</label> <br/>
     <input type="password" name="input" ng-model="password"> <br/>
     <button ng-click="addEntrant()">Add Entrant!</button>
+    <button ng-click="generateMatches()">Generate Matches!</button>
 </div>
+
+
+<ul ng-repeat="match in matches">
+    <li> 
+        <div>{{match.id}}</div>
+    </li>
+</ul>
