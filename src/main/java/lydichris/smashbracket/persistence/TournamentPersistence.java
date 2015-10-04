@@ -84,7 +84,7 @@ public class TournamentPersistence {
     }
 
     public List<Tournament> getTournaments(int offset, int size, String query) {
-        String SQL = "select uuid from tournaments where rownum > " + offset + " and rownum <= " + (offset + size);
+        String SQL = "select uuid from tournaments limit " + offset + " , " +  size;
         List<String> tournamentUuids = (List<String>) jdbcTemplateObject.queryForList(SQL, String.class);
         List<Tournament> tournaments = new ArrayList<>();
         for(String tournamentUuid : tournamentUuids){

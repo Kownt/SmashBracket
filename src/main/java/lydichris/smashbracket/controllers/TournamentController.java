@@ -71,7 +71,7 @@ public class TournamentController {
     @RequestMapping(value = "/tournaments", method = RequestMethod.POST)
     Tournament createTournament(@RequestParam String name,
             @RequestParam String description,
-            @RequestParam(value = "maxEntrants", required = false) int maxEntrants,
+            @RequestParam(value = "maxEntrants", required = false, defaultValue="0") int maxEntrants,
             @RequestParam String game,
             @RequestParam TournamentType tournamentType,
             @RequestParam String startTime,
