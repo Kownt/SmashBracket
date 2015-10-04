@@ -164,7 +164,7 @@ smashBracketControllers.controller('CreateTournamentCtrl', ['$scope', '$http', '
                 method: 'POST',
                 url: 'http://127.0.0.1:8080/tournaments?name=' + $scope.name +
                         '&description=' + $scope.description +
-                        '&maxEntrants=' + $scope.entrantLimit +
+                        '&maxEntrants=' + ($scope.entrantLimit || 0) +
                         '&game=' + $scope.game +
                         '&tournamentType=' + $scope.tournamentType +
                         '&startTime=' + new Date($scope.startTime).toUTCString() +
