@@ -74,32 +74,30 @@ nav a:hover {
 
 /* ListBrowser */
 table {
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
-    border-collapse: collapse;
-    border: 1px solid black;
+    width: 96%;
+    border-collapse: separate;
+    border: 2px solid red;
+    border-radius: 5px;
+    font-size: 14px;
 }
 th {
+    text-align: left;
     background-color: #115EA2;
     color: #FFFFFF;
-    border: 1px solid black;
+    padding: 10px;
+}
+tr{
+    text-transform: capitalize;
 }
 tr:nth-child(odd) {
     background-color: #88aed0;
-    font-size: 20px;
-}
-tr:nth-child(even) {
-    font-size: 20px;
 }
 tr:hover {
     background: #115EA2;
+    color: white;
 }
-td:not(:first-child) {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
+td {
+    padding: 5px;
 }
 .btn {
     border-radius: 5px;

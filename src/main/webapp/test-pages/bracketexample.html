@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="SmashBracketApp">
+    <head>
+        <meta charset="utf-8">
+        <title>SmashBracket</title>
+        <link rel="stylesheet" href="../css/app.css">
+        <link rel="stylesheet" href="test.css">
+        <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+        <script src="../angular/jquery-2.1.4.js"></script>
+        <script src="../angular/angular.js"></script>
+        <script src="../angular/angular-animate.js"></script>
+        <script src="../angular/angular-route.js"></script>
+        <script src="../angular/angular-resource.js"></script>
+        <script src="../angular/angular-cookies.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/animations.js"></script>
+        <script src="../js/controllers.js"></script>
+        <script src="../js/filters.js"></script>
+        <script src="../js/services.js"></script>
+        <script src="../js/directives.js"></script>
+        <base href="/">
+    </head>
+    <body>
+        <header>
+            <div id="navBar">
+                <a href="/"><img src="/img/smashBracket.png" alt="SmashBracket Icon" style="width:96px;"></a>
+                <h2><a href="/"><em><strong class="logo"><span id="logo-first">S</span>mash</strong></em> Bracket</a></h2>
+            </div>
+            <nav>
+                <a href="/login">Login</a>
+                <a href="/register">Sign Up</a>
+                <a href="/browse">Browse Tournaments</a>
+                <a href="/create">Create Tournament</a>
+            </nav>
+        </header>
+        <main>
+            <div class="view-container">
+                <div class="view-frame">
+                    <div class="match">
+                        <div class="upper-contestant"></div>
+                        <div class="lower-contestant"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
