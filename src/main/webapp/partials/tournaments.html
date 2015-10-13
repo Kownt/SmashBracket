@@ -1,26 +1,53 @@
-<ul ng-repeat="entrant  in entrants">
-    <li> 
-        <div>{{entrant.tag}}</div>
-        <div>{{entrant.username}}</div>
-        <div>Remove Button Button</div>
-    </li>
-</ul>
+<h1>{{tournament.name}}</h1>
 
-<div class="addEntrantForm">
-    <div ng-show="error" class="alert alert-danger">{{error}}</div>
-    <label>Tag:</label> <br/>
-    <input type="text" name="input" ng-model="tag" required> <br/>
-    <label>UserName:</label> <br/>
-    <input type="text" name="input" ng-model="username"> <br/>
-    <label>Password:</label> <br/>
-    <input type="password" name="input" ng-model="password"> <br/>
-    <button ng-click="addEntrant()">Add Entrant!</button>
-    <button ng-click="generateMatches()">Generate Matches!</button>
+<div class="left span-4 addEntrantForm">
+    <h2>Add an entrant</h2>
+    <div ng-show="error" class="alert alert-danger">
+        {{error}}
+    </div>
+    <label>Tag:</label>
+    <br/>
+    <input type="text" name="input" ng-model="tag" required>
+    <br/>
+    <label>UserName:</label>
+    <br/>
+    <input type="text" name="input" ng-model="username">
+    <br/>
+    <label>Password:</label>
+    <br/>
+    <input type="password" name="input" ng-model="password">
+    <br/>
+    <button ng-click="addEntrant()">
+        Add Entrant!
+    </button>
+    <button ng-click="generateMatches()">
+        Generate Matches!
+    </button>
 </div>
 
+<div class="right span-8">
+    <h2>Entrants</h2>
+    <table class='entrant-table'>
+        <tr>
+            <th> Tag </th>
+            <th> Username </th>
+            <th></th>
+        </tr>
+        <tr  ng-repeat="entrant  in entrants">
+            <td> {{entrant.tag}} </td>
+            <td> {{entrant.username}} </td>
+            <td>
+            <div class="btn btn-small">
+                Remove
+            </div></td>
+        </tr>
+    </table>
+</div>
 
 <ul ng-repeat="match in matches">
-    <li> 
-        <div>{{match.id}}</div>
+    <li>
+        <div>
+            {{match.id}}
+        </div>
     </li>
 </ul>

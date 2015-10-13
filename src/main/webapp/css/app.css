@@ -99,29 +99,6 @@ tr:hover {
 td {
     padding: 5px;
 }
-.btn {
-    border-radius: 5px;
-    border: 1px solid #04106D;
-    padding: 7px;
-    background-color: #070E9D;
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    font-size: 14px;
-}
-.btn:hover {
-    background-color: #04106D;
-    border-color: #010436;
-}
-.btn:active {
-    background-color: black;
-    border-color: black;
-}
-.btn:active, .btn:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-}
 .alert-danger {
     background-color: #FFB2B2;
     border: 2px solid red;
@@ -168,3 +145,63 @@ input {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+.btn {
+    border-radius: 5px;
+    border: 1px solid #04106D;
+    padding: 7px;
+    background-color: #070E9D;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+.btn:hover {
+    background-color: #04106D;
+    border-color: #010436;
+}
+.btn:active {
+    background-color: black;
+    border-color: black;
+}
+.btn:active, .btn:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.btn-small {
+    display: inline-block;
+    padding: 3px;
+    font-weight: normal;
+    margin: 0px;
+}
+.entrant-table {
+    border-bottom: 0px;
+}
+.entrant-table td{
+    font-weight: bold;
+}
+.entrant-table tr:hover:nth-child(even) {
+    background-color: white;
+    color:black;
+}
+.entrant-table tr:hover:nth-child(odd) {
+    background-color: #88aed0;
+    color: black;
+}
+.entrant-table tr td:last-child {
+    text-align: center;
+}
+
+.span-8 {
+    width: 66%;
+}
+.span-4 {
+    width: 33%;
+}
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
+
